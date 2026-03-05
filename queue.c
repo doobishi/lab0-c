@@ -2,12 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "list.h"
 #include "queue.h"
 
 /* Create an empty queue */
 struct list_head *q_new()
 {
-    return NULL;
+    struct list_head *head = malloc(sizeof(struct list_head));
+    if (!head)
+        return NULL;
+
+    head->next = head;
+    head->prev = head;
+
+    return head;
 }
 
 /* Free all storage used by queue */
