@@ -72,7 +72,7 @@ bool q_insert_tail(struct list_head *head, char *s)
     if (!head)
         return false;
 
-    element_t *new_node = _alloc_newnnoe(s);
+    element_t *new_node = _alloc_newnnode(s);
     if (!new_node)
         return false;
 
