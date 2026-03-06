@@ -34,22 +34,29 @@ void q_free(struct list_head *head)
     free(head);
 }
 
+element_t *_alloc_newnode(char *s)
+{
+    element_t *new_node = malloc(sizeof(element_t));
+    if (!new_node)
+        return NULL;
+
+    /* 1. Allocate and copy string s to new_node->value */
+    new_node->value = strdup(s);
+    if (!new_node->value) {
+        free(new_node);  // Clean up to avoid memory leak
+        return NULL;
+    }
+}
+
 /* Insert an element at head of queue */
 bool q_insert_head(struct list_head *head, char *s)
 {
     if (!head)
         return false;
 
-    element_t *new_node = malloc(sizeof(element_t));
+    element_t *new_node = _alloc_newnode(s);
     if (!new_node)
         return false;
-
-    /* 1. Allocate and copy string s to new_node->value */
-    new_node->value = strdup(s);
-    if (!new_node->value) {
-        free(new_node);  // Clean up to avoid memory leak
-        return false;
-    }
 
     /* 2. Use macro list_add to link the node */
     list_add(&new_node->list, head);
@@ -60,6 +67,14 @@ bool q_insert_head(struct list_head *head, char *s)
 /* Insert an element at tail of queue */
 bool q_insert_tail(struct list_head *head, char *s)
 {
+    if (!head)
+        return false;
+
+    element_t *new_node = _alloc_newnnoe(s);
+    if (!new_node)
+        return false;
+
+    list_add(&new_node->list, head->prev);
     return true;
 }
 
