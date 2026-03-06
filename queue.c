@@ -46,6 +46,8 @@ element_t *_alloc_newnode(char *s)
         free(new_node);  // Clean up to avoid memory leak
         return NULL;
     }
+
+    return new_node;
 }
 
 /* Insert an element at head of queue */
