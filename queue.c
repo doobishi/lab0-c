@@ -199,9 +199,6 @@ void q_swap(struct list_head *head)
     if (!head || list_empty(head) || list_is_singular(head))
         return;
 
-    // Iterate through the list.
-    // The condition 'node->next != head' protects us against odd-numbered
-    // lists.
     for (struct list_head *node = head->next;
          node != head && node->next != head; node = node->next) {
         list_move(node, node->next);
