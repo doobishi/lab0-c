@@ -166,7 +166,7 @@ bool q_delete_dup(struct list_head *head)
     struct list_head *nxt_of_std = std->next;
     while (std != head && nxt_of_std != head) {
         element_t *ele_std = list_entry(std, element_t, list);
-        element_t *ele_nxt_std = list_entry(nxt_of_std, element_t, list);
+        const element_t *ele_nxt_std = list_entry(nxt_of_std, element_t, list);
         if (strcmp(ele_std->value, ele_nxt_std->value) == 0) {
             while (nxt_of_std != head &&
                    !strcmp(ele_std->value, ele_nxt_std->value)) {
